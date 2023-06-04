@@ -6,14 +6,20 @@ import { TextField } from '@mui/material';
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
   {
-    field: 'firstName',
-    headerName: 'First name',
+    field: 'names',
+    headerName: 'name',
+    width: 350,
+    editable: true,
+  },
+  {
+    field: 'activeOrders',
+    headerName: 'Active Orders',
     width: 150,
     editable: true,
   },
   {
-    field: 'lastName',
-    headerName: 'Last name',
+    field: 'amount',
+    headerName: 'Amount',
     width: 150,
     editable: true,
   },
@@ -24,13 +30,10 @@ const columns = [
     editable: true,
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    field: 'options',
+    headerName: 'Options',
+    width: 110,
+    editable: true,
   },
 ];
 
@@ -38,15 +41,15 @@ const columns = [
 export default function DataGrids() {
     const [search, setSearch] = React.useState('')
     const [rows, setRows] = React.useState([
-      { id: 1, lastName: 'Snow', firstName: 'Jon', placedOn: 1/12/2012 },
-      { id: 2, lastName: 'Lannister', firstName: 'Cersei', placedOn: 42 },
-      { id: 3, lastName: 'Lannister', firstName: 'Jaime', placedOn: 45 },
-      { id: 4, lastName: 'Stark', firstName: 'Arya', placedOn: 16 },
-      { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', placedOn: null },
-      { id: 6, lastName: 'Melisandre', firstName: null, placedOn: 150 },
-      { id: 7, lastName: 'Clifford', firstName: 'Ferrara', placedOn: 44 },
-      { id: 8, lastName: 'Frances', firstName: 'Rossini', placedOn: 36 },
-      { id: 9, lastName: 'Roxie', firstName: 'Harvey', placedOn: 65 },
+      { id: 1,names:'', activeOrders: 756, amount: 9, placedOn: 1/12/2012, options: '' },
+      { id: 2,names:'', activeOrders: 34, amount: 3000, placedOn: 42, options: '' },
+      { id: 3,names:'', activeOrders: 1897, amount: 49, placedOn: 45, options: '' },
+      { id: 4,names:'', activeOrders: 89, amount: 299, placedOn: 16, options: '' },
+      { id: 5,names:'', activeOrders: 276, amount: 29, placedOn: 23, options: '' },
+      { id: 6,names:'', activeOrders: 1098, amount: 135, placedOn: 150, options: '' },
+      { id: 7,names:'', activeOrders: 4298, amount: 48, placedOn: 44, options: '' },
+      { id: 8,names:'', activeOrders: 1928, amount: 90, placedOn: 36, options: '' },
+      { id: 9,names:'', activeOrders: 640, amount: 167, placedOn: 65, options: '' },
     ]);
 React.useEffect(() => {
     setRows(rows.filter(e => e.firstName?.toLowerCase()?.includes(search?.toLowerCase())))
@@ -62,14 +65,15 @@ React.useEffect(() => {
       <DataGrid
         rows={rows}
         columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
+        // initialState={{
+        //   pagination: {
+        //     paginationModel: {
+        //       pageSize: 5,
+        //     },
+        //   },
+        // }}
+        scrollbarSize={(7)}
+        // pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
       />
