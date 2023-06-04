@@ -1,0 +1,34 @@
+.main{
+    margin: 20px;
+}
+.confirmed-wrap{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.confirmed-head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.confirmed-head-left{
+    display: flex;
+    flex-direction: row;
+}
+.issues{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.issues-left{
+    display: flex;
+    flex-direction: row;
+}
