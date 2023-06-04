@@ -3,7 +3,16 @@ import './sidebar.css'
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <div className='sidebar'>
+      <div className='sidebar-logo'>
+        ZAG
+      </div>
+      <div className='sidebar-buttons'>
+        <div className='sidebar-button'>Reports</div>
+        <div className='sidebar-button'>Workspaces</div>
+        <div className='sidebar-button'>Settings</div>
+      </div>
+    </div>
   )
 }
 

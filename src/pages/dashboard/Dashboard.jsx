@@ -6,10 +6,14 @@ import Main from '../../component/main/Main';
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className='dashboard'>
+      <div className='sidebar-wrap'>
         <Sidebar/>
-        <Header/>
-        <Main/>
+      </div>
+      <div className='header-main-wrap'>
+          <Header/>
+          <Main/>
+      </div>
     </div>
   )
 }

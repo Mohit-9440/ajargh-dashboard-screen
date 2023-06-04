@@ -1,0 +1,16 @@
+.dashboard{
+    display: flex;
+    flex-direction: row;
+}
+.sidebar-wrap{
+    width: 20%;
+    height: 100vh;
+    background-color: aqua;
+}
+.header-main-wrap{
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+}
