@@ -1,0 +1,16 @@
+.header{
+    background-color: blanchedalmond;
+    margin: 20px;
+}
+.header-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-button-wrap button{
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
