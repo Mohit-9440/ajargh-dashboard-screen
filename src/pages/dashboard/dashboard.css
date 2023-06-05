@@ -2,6 +2,10 @@
     display: flex;
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(232 232 232);
 }
 .sidebar-wrap{
     width: 18%;
@@ -9,9 +13,11 @@
     background-color: rgb(251, 255, 255);
 }
 .header-main-wrap{
-    width: 82%;
-    height: 100vh;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    background-color: rgb(209, 207, 207);
+    background-color: rgb(232 232 232);
+}
+body{
+    margin: 0;
 }

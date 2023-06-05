@@ -7,9 +7,7 @@ import Main from '../../component/main/Main';
 const Dashboard = () => {
   return (
     <div className='dashboard'>
-      <div className='sidebar-wrap'>
         <Sidebar/>
-      </div>
       <div className='header-main-wrap'>
           <Header/>
           <Main/>
