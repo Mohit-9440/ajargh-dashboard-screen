@@ -1,9 +1,20 @@
 import * as React from "react";
+import {useState} from 'react';
 import Box from "@mui/material/Box";
-import { DataGrid, GridToolbar, GridToolbarFilterButton} from "@mui/x-data-grid";
-import { TextField } from "@mui/material";
+import { DataGrid} from "@mui/x-data-grid";
 import "./datagrid.css";
 import rowData from "./rowData.json";
+const handleEdit = (updatedRow, rows, setRows) => {
+  const rowIndex = rows.findIndex((r) => r.id === updatedRow.id);
+
+  if (rowIndex !== -1) {
+    const updatedRows = [...rows];
+    updatedRows[rowIndex] = updatedRow;
+
+    setRows(updatedRows);
+    console.log("Updated row:", updatedRow);
+  }
+};
 const columns = [
   {
     field: "logo",
@@ -30,11 +41,29 @@ const columns = [
     // headerName: 'name',
     width: 250,
     type: "name",
+    editable: true,
     renderCell: (params) => (
       <div style={{ whiteSpace: "pre-wrap" }}>
-        <div className="datagrid-name">{params.row.name}</div>
-        {/* <br /> */}
-        <div className="datagrid-p">{params.row.p}</div>
+        <div className="datagrid-name">
+          <input
+            type="text"
+            value={params.row.name}
+            onChange={(e) =>
+              handleEdit(
+                { ...params.row, name: e.target.value },
+                params.api.getRow(params.row.id),
+                params.api.setRow
+               )
+            }
+          />
+        </div>
+        <div className="datagrid-p">
+          <input
+            type="text"
+            value={params.row.p}
+            onChange={(e) => handleEdit({ ...params.row, p: e.target.value })}
+          />
+        </div>
       </div>
     ),
   },
@@ -70,34 +99,33 @@ const columns = [
     headerName: "Options",
     width: 110,
     editable: true,
+    renderCell: (params) => {
+      return (
+        <button
+          onClick={() =>
+            handleEdit(
+              params.row,
+              params.api.getRow(params.row.id),
+              params.api.setRow
+            )
+          }
+        >
+          Click
+        </button>
+      );
+    },
   },
 ];
 
 export default function DataGrids() {
-  // const [search, setSearch] = React.useState("");
-  const [rows, setRows] = React.useState();
-  // React.useEffect(() => {
-  //   search !== "" &&
-  //     setRows(
-  //       rows.filter((e) =>
-  //         e.firstName?.toLowerCase()?.includes(search?.toLowerCase())
-  //       )
-  //     );
-  // }, [search]);
-
-  // console.log(rows)
+  const [rows, setRows] = useState(rowData);
 
   return (
     <Box sx={{ width: "100%" }}>
-      {/* <TextField value={search} onChange={(e) => setSearch(e.target.value)} /> */}
       <DataGrid
         rows={rowData}
         columns={columns}
-        // initialState={{
-        //   pinnedColumns: {
-        //     left: ['day'],
-        //   },
-        // }}
+   
         autoHeight
         disableRowSelectionOnClick
         hideFooter
@@ -107,15 +135,9 @@ export default function DataGrids() {
         classes={{
           footerContainer: "data-grid-footer",
         }}
-        // components={{
-        //   Header: () => (
-        //     <div className="grid-header">
-        //       <GridToolbar>
-        //         <GridToolbarFilterButton />
-        //       </GridToolbar>
-        //     </div>
-        //   ),
-        // }}
+        renderCell={(params) => {
+          return <button onClick={() => handleEdit(params.row)}>Click</button>;
+        }}
       />
     </Box>
   );
