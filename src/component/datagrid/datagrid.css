@@ -1,0 +1,29 @@
+.data-grid-footer {
+    display: none !important;
+}
+.MuiDataGrid-virtualScroller {
+    overflow-y: scroll;
+    max-height: 250px;
+}
+.datagrid-name{
+    font-size: 15px;
+    font-weight: 700;
+}
+.datagrid-p{
+    font-size: 10px;
+}
+.logo-image-wrap{
+    white-space: pre-wrap;
+}
+.logo-image{
+    /* border: 1px solid black; */
+    width: 70px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.css-12u49z-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer:nth-child(3),
+.css-12u49z-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer:nth-child(4) {
+  display: none;
+}

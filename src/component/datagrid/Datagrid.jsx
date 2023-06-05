@@ -1,81 +1,121 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-import { TextField } from '@mui/material';
-
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { DataGrid, GridToolbar, GridToolbarFilterButton} from "@mui/x-data-grid";
+import { TextField } from "@mui/material";
+import "./datagrid.css";
+import rowData from "./rowData.json";
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
   {
-    field: 'names',
-    headerName: 'name',
-    width: 350,
-    editable: true,
+    field: "logo",
+    width: 100,
+    type: "image",
+    renderCell: (params) => {
+      console.log("params", params);
+      return (
+        <div className="logo-image-wrap">
+          <div className="logo-image">
+            {params?.row?.logo && (
+              <img
+                src={require(`../../assets/${params.row.logo}`)}
+                alt="logo"
+              />
+            )}
+          </div>
+        </div>
+      );
+    },
   },
   {
-    field: 'activeOrders',
-    headerName: 'Active Orders',
+    // field: "name",
+    // headerName: 'name',
+    width: 250,
+    type: "name",
+    renderCell: (params) => (
+      <div style={{ whiteSpace: "pre-wrap" }}>
+        <div className="datagrid-name">{params.row.name}</div>
+        {/* <br /> */}
+        <div className="datagrid-p">{params.row.p}</div>
+      </div>
+    ),
+  },
+  {
+    field: "activeOrders",
+    headerName: "Active Orders",
     width: 150,
     editable: true,
+    type: "number",
+    hide: true
   },
   {
-    field: 'amount',
-    headerName: 'Amount',
+    field: "amount",
+    headerName: "Amount",
     width: 150,
     editable: true,
+    type: "number",
   },
   {
-    field: 'placedOn',
-    headerName: 'Placed on',
+    field: "date",
+    headerName: "Placed on",
     width: 110,
+    type: "date",
     editable: true,
+    valueGetter: (params) => {
+      const dateString = params.row.date;
+      const dateObject = new Date(dateString);
+      return dateObject;
+    },
   },
   {
-    field: 'options',
-    headerName: 'Options',
+    field: "options",
+    headerName: "Options",
     width: 110,
     editable: true,
   },
 ];
 
-
 export default function DataGrids() {
-    const [search, setSearch] = React.useState('')
-    const [rows, setRows] = React.useState([
-      { id: 1,names:'', activeOrders: 756, amount: 9, placedOn: 1/12/2012, options: '' },
-      { id: 2,names:'', activeOrders: 34, amount: 3000, placedOn: 42, options: '' },
-      { id: 3,names:'', activeOrders: 1897, amount: 49, placedOn: 45, options: '' },
-      { id: 4,names:'', activeOrders: 89, amount: 299, placedOn: 16, options: '' },
-      { id: 5,names:'', activeOrders: 276, amount: 29, placedOn: 23, options: '' },
-      { id: 6,names:'', activeOrders: 1098, amount: 135, placedOn: 150, options: '' },
-      { id: 7,names:'', activeOrders: 4298, amount: 48, placedOn: 44, options: '' },
-      { id: 8,names:'', activeOrders: 1928, amount: 90, placedOn: 36, options: '' },
-      { id: 9,names:'', activeOrders: 640, amount: 167, placedOn: 65, options: '' },
-    ]);
-React.useEffect(() => {
-    setRows(rows.filter(e => e.firstName?.toLowerCase()?.includes(search?.toLowerCase())))
+  // const [search, setSearch] = React.useState("");
+  const [rows, setRows] = React.useState();
+  // React.useEffect(() => {
+  //   search !== "" &&
+  //     setRows(
+  //       rows.filter((e) =>
+  //         e.firstName?.toLowerCase()?.includes(search?.toLowerCase())
+  //       )
+  //     );
+  // }, [search]);
 
-}, [search])
+  // console.log(rows)
 
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
-    <TextField
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-     />
+    <Box sx={{ width: "100%" }}>
+      {/* <TextField value={search} onChange={(e) => setSearch(e.target.value)} /> */}
       <DataGrid
-        rows={rows}
+        rows={rowData}
         columns={columns}
         // initialState={{
-        //   pagination: {
-        //     paginationModel: {
-        //       pageSize: 5,
-        //     },
+        //   pinnedColumns: {
+        //     left: ['day'],
         //   },
         // }}
-        scrollbarSize={(7)}
-        // pageSizeOptions={[5]}
-        checkboxSelection
+        autoHeight
         disableRowSelectionOnClick
+        hideFooter
+        showCellVerticalBorder
+        showColumnVerticalBorder
+        disableColumnReorder
+        classes={{
+          footerContainer: "data-grid-footer",
+        }}
+        // components={{
+        //   Header: () => (
+        //     <div className="grid-header">
+        //       <GridToolbar>
+        //         <GridToolbarFilterButton />
+        //       </GridToolbar>
+        //     </div>
+        //   ),
+        // }}
       />
     </Box>
   );
