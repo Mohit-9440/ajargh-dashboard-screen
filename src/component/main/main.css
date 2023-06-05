@@ -3,21 +3,21 @@
 }
 .confirmed-wrap{
     background-color: white;
-    border: 1px solid gray;
     border-radius: 20px;
     margin-bottom: 20px;
 }
 .confirmed-head{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     padding: 10px;
 }
 .confirmed-head-left{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+}
+.confirmed-title{
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 .confirmed-head-left h3{
@@ -29,20 +29,20 @@
     font-weight: 700;
 }
 .confirmed-content{
-    height: 380px;
+    height: 400px;
 }
-
+.issues-wrap{
+    background-color: white;
+    border-radius: 20px;
+}
 .issues{
-    border: 1px solid gray;
-
     display: flex;
+    border-radius: 20px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     background-color: white;
-    border: 1px solid black;
-    border-radius: 20px;
 }
 .issues-left{
     display: flex;
@@ -57,7 +57,4 @@
 .issues-left p{
     color: gray;
     font-weight: 700;
-}
-.css-12u49z-MuiDataGrid-root .MuiDataGrid-withBorderColor{
-    display: none;
 }
